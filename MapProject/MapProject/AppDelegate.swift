@@ -11,18 +11,27 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    lazy var mapManager: BMKMapManager? = {
+        // 初始化 BMKMapManager
+        return BMKMapManager()
+    }()
+    
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // 如果要关注网络及授权验证事件，请设定generalDelegate参数
+        let ret = mapManager?.start("oKGpQC754bNB1fBdNAggqsULFs3RfAIO", generalDelegate: nil)
+        if !ret! {  // 如果 ret 为 false，先在后面！强制拆包，再在前面！取反
+            print("manager start failed!")
+        }
+        
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
