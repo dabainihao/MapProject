@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("manager start failed!")
         }
         
+        AVOSCloud.setApplicationId("vtrsMd63XFPBLQ8ywt3iHYQ0-gzGzoHsz", clientKey: "M0bebqbfpIqBY2MXOMpHlhhr")
         return true
     }
 

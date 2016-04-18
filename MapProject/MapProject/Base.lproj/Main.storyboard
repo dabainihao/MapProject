@@ -33,6 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cif-IP-9Sl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="x6c-Ep-sjp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -45,12 +46,13 @@
         <!--Item-->
         <scene sceneID="FvM-6B-t2l">
             <objects>
-                <viewController id="dQt-Gt-EO0" customClass="LO_LoginViewController" customModule="MapProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dQt-Gt-EO0" customClass="LO_HomeController" customModule="MapProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nax-OW-jvq"/>
                         <viewControllerLayoutGuide type="bottom" id="h1n-9U-d13"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Lcp-IF-fSU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

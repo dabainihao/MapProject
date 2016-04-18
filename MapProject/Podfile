@@ -1,1 +1,2 @@
 pod 'BaiduMapKit', '~> 2.10.2'
+pod 'AVOSCloud', '~> 3.2.7'

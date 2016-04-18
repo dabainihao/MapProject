@@ -1,10 +1,13 @@
 PODS:
+  - AVOSCloud (3.2.7)
   - BaiduMapKit (2.10.2)
 
 DEPENDENCIES:
+  - AVOSCloud (~> 3.2.7)
   - BaiduMapKit (~> 2.10.2)
 
 SPEC CHECKSUMS:
+  AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
   BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
 
 COCOAPODS: 0.37.2

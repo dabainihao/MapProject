@@ -18,5 +18,5 @@
 
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
 
-
+#import <AVOSCloud/AVOSCloud.h>
 
