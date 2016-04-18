@@ -8,8 +8,6 @@
 
 // 
 
-
-
 import UIKit
 
 enum UserNameType {
@@ -98,7 +96,7 @@ class LO_loginHelper: NSObject {
         }
     }
     
-    // 注册
+    // 注册(暂时没用)
     func registWithInformation(emailOrPhone: String, passWorld: String, successed:(user:LO_user?)->Void, faile:(err:NSError?)->Void) {
         
         let isOK = self.passWorld(passWorld)
@@ -157,35 +155,105 @@ class LO_loginHelper: NSObject {
         }
     }
     
+    
+    // 判断用户名是手机号, 还是邮箱, 还是用户名
     func userNameType(username: String)->UserNameType {
         let patternTel: String = "^1[3,5,8,7][0-9]{9}$"
-        let tel = NSPredicate(format: "SELF MATCHES \(patternTel)", argumentArray: nil)
-        if tel .evaluateWithObject(patternTel) {
+        var matcher: RegexHelper
+        do {
+            matcher = try! RegexHelper(patternTel)
+        }
+        if matcher.match(username) {
             return UserNameType.mobilePhoneNumber
         }
         
-        let patternemial : String = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        let email = NSPredicate(format: "SELF MATCHES \(patternemial)", argumentArray: nil)
-        if email.evaluateWithObject(patternemial) {
+        let mailPattern =
+        "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
+        do {
+            matcher = try! RegexHelper(mailPattern)
+        }
+        if matcher.match(username) {
             return UserNameType.email
         }
         
         let patternUserName : String = "^[A-Za-z0-9_]{6,20}+$"
-        let userNem = NSPredicate(format: "SELF MATCHES \(patternUserName)", argumentArray: nil)
-        if userNem.evaluateWithObject(username) {
+        do {
+            matcher = try! RegexHelper(patternUserName)
+        }
+        if matcher.match(username) {
             return UserNameType.userName
         }
         return UserNameType.error
     }
     
+    // 判断密码是不是在6-20位
     func passWorld(passwd : String)->Bool {
-        let pass = "^[a-zA-Z0-9.]{6,20}+$"
-        let userNem = NSPredicate(format: "SELF MATCHES \(pass)", argumentArray: nil)
-        return userNem.evaluateWithObject(passwd)
+        let patternTel: String = "^[a-zA-Z0-9.]{6,20}+$"
+        var matcher: RegexHelper
+        do {
+            matcher = try! RegexHelper(patternTel)
+        }
+        if matcher.match(passwd) {
+            return true
+        } else {
+            return false
+        }
+    }
+    // 判断是不是电话号码
+    func isPhoneNumber(phone : String)->Bool {
+        print(phone)
+        let patternTel: String = "^1[3,5,8,7][0-9]{9}$"
+        var matcher: RegexHelper
+        do {
+            matcher = try! RegexHelper(patternTel)
+        }
+        if matcher.match(phone) {
+            return true
+        }
+        return false
     }
     
+    struct RegexHelper {
+        let regex: NSRegularExpression
+        
+        init(_ pattern: String) throws {
+            try regex = NSRegularExpression(pattern: pattern,
+                options: .CaseInsensitive)
+        }
+        
+        func match(input: String) -> Bool {
+            let matches = regex.matchesInString(input,
+                options: [],
+                range: NSMakeRange(0, input.characters.count))
+            return matches.count > 0
+        }
+    }
     
+    // 发送验证码
+    class func sendMessageCode(phone:String,result:(AnyObject)->Void) {
+        AVOSCloud.requestSmsCodeWithPhoneNumber(phone) { (reslut, err) -> Void in
+            if (err == nil) {
+                result(reslut);
+                return
+            }
+            result(err)
+        }
+    }
     
-    
+    // 根据验证码与手机号注册
+    class func loginUpWithcode(phone: String, code : String, result:(AnyObject)->Void) {
+        if code == "" {
+            return
+        }
+        AVUser.signUpOrLoginWithMobilePhoneNumberInBackground(phone, smsCode: code) { (usr, err) -> Void in
+            if err != nil { //注册失败
+                result(err);
+                return
+            }
+            // 注册成功
+            result(usr);
+            return
+        }
+    }
     
 }

@@ -12,9 +12,7 @@ class LO_ForgetPassWorldViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.whiteColor()
     }
-
-    
 
 }

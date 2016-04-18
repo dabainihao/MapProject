@@ -8,8 +8,9 @@
 
 import UIKit
 
-
-
 class LO_Verification: NSObject {
+    
+        
+    
     
 }

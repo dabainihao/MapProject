@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     var window: UIWindow?
-
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // 如果要关注网络及授权验证事件，请设定generalDelegate参数

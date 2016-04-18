@@ -20,6 +20,10 @@ class LO_LoginController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         
+        // 设置返回按钮
+        let barButton : UIBarButtonItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.Plain, target: self, action: "backAction")
+        self.navigationItem.leftBarButtonItem =  barButton
+        
         let userName = UITextField(frame: CGRectMake(30,70 , self.view.bounds.size.width - 60, 40))
         userName.placeholder = "请输入电话,邮箱或者用户名"
         self.view .addSubview(userName)
@@ -66,16 +70,25 @@ class LO_LoginController: UIViewController {
 
     // 登陆
     func loginAction() {
-        
+        LO_loginHelper().loginWithInformation((self.userNameTextField?.text)!, passWorld: (self.passWorldTextField?.text)!, success: { (user) -> Void in
+            
+            }) { (err) -> Void in
+                
+        }
     }
     
     // 注册
     func registAction() {
-        
+        self.navigationController?.pushViewController(LO_RegistViewController(), animated: true)
     }
     
     // 忘记密码
     func forgetButtonAction() {
-        
+       self.navigationController?.pushViewController(LO_ForgetPassWorldViewController(), animated: true)
     }
+    // 返回
+    func backAction() {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }
