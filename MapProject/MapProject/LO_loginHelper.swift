@@ -27,13 +27,16 @@ class LO_user: NSObject {
 class LO_loginHelper: NSObject {
     // 验证是否登陆
     func isLogin()->Bool {
-       let user = AVUser.currentUser()
-        if user == nil {
-            return false
-        } else {
-            return true
-        }
+      let str = NSUserDefaults.standardUserDefaults().objectForKey("siLogin");
+        return str == nil ?  false : true
     }
+    
+    // 退出登录
+    func loginOut() {
+        AVUser.logOut()
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("siLogin")
+    }
+    
     // 返回邮箱
     func getEmail()->String {
         let user = AVUser.currentUser()
@@ -75,6 +78,7 @@ class LO_loginHelper: NSObject {
                 us.userName = userInfor.username != nil ? userInfor.username : "请输入用户名"
                 us.mobilePhoneNumber = userInfor.mobilePhoneNumber != nil ? userInfor.mobilePhoneNumber : "绑定手机"
                 us.email = userInfor.mobilePhoneNumber != nil ? userInfor.email : "绑定邮箱"
+                NSUserDefaults.standardUserDefaults().setObject("login", forKey:("siLogin"))
                 success(user: us)
             })
         case .email :
@@ -83,12 +87,14 @@ class LO_loginHelper: NSObject {
         case .mobilePhoneNumber :
             AVUser.logInWithMobilePhoneNumberInBackground(userName, password: passWorld, block: { (userInfor, err) -> Void in
                 if err != nil || userInfor == nil {
+                    faile(err: err)
                     return
                 }
                 let us : LO_user = LO_user()
                 us.userName = userInfor.username != nil ? userInfor.username : "请输入用户名"
                 us.mobilePhoneNumber = userInfor.mobilePhoneNumber != nil ? userInfor.mobilePhoneNumber : "绑定手机"
                 us.email = userInfor.mobilePhoneNumber != nil ? userInfor.email : "绑定邮箱"
+                NSUserDefaults.standardUserDefaults().setObject("login", forKey:("siLogin"))
                 success(user: us)
             })
         case .error :
@@ -98,7 +104,6 @@ class LO_loginHelper: NSObject {
     
     // 注册(暂时没用)
     func registWithInformation(emailOrPhone: String, passWorld: String, successed:(user:LO_user?)->Void, faile:(err:NSError?)->Void) {
-        
         let isOK = self.passWorld(passWorld)
         if !isOK {
             print("密码不正确")
@@ -119,6 +124,7 @@ class LO_loginHelper: NSObject {
                     currentUser.email = AVUser.currentUser().email
                     currentUser.mobilePhoneNumber = AVUser.currentUser().mobilePhoneNumber
                     successed(user: currentUser)
+                    NSUserDefaults.standardUserDefaults().setObject("login", forKey:("siLogin"))
                     return
                 }
                 if (err != nil) {
@@ -140,6 +146,7 @@ class LO_loginHelper: NSObject {
                     currentUser.email = AVUser.currentUser().email
                     currentUser.mobilePhoneNumber = AVUser.currentUser().mobilePhoneNumber
                     successed(user: currentUser)
+                    NSUserDefaults.standardUserDefaults().setObject("login", forKey:("siLogin"))
                     return
                 }
                 if (err != nil) {
@@ -250,9 +257,40 @@ class LO_loginHelper: NSObject {
                 result(err);
                 return
             }
+            NSUserDefaults.standardUserDefaults().setObject("login", forKey:("siLogin"))
             // 注册成功
             result(usr);
             return
+        }
+    }
+    
+    // 重置密码请求验证码
+    class func registSMSCod(str:String ,result:(AnyObject)->Void) {
+        AVUser.requestPasswordResetWithPhoneNumber(str) { (succeeded, err) -> Void in
+            if succeeded {
+                result(succeeded)
+                return
+            }
+            if err != nil{
+                let view = UIAlertView(title: "提示", message: "验证码请求失败", delegate: nil, cancelButtonTitle: "确定", otherButtonTitles: "取消")
+                view.show()
+                print(err.domain)
+            }
+        }
+    }
+    
+    // 重置密码
+    class func resetPW(SMScod: String, newPW: String ,result:(AnyObject)->Void) {
+        AVUser.resetPasswordWithSmsCode(SMScod, newPassword: newPW) { (succeeded, err) -> Void in
+            if succeeded {
+                result(succeeded)
+                return
+            }
+            if err != nil {
+                let view = UIAlertView(title: "提示", message: "重置失败", delegate: nil, cancelButtonTitle: "确定", otherButtonTitles: "取消")
+                view.show()
+               print(err.domain)
+            }
         }
     }
     

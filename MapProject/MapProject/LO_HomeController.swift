@@ -15,30 +15,49 @@ class LO_HomeController: UIViewController,UITableViewDelegate,UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if (LO_loginHelper().isLogin()) {   //登录时
+        self.showLoingView()
+        } else {
+        self.showLoginOutView()
+        }
+    }
+    
+    // 显示登录时的界面
+    func showLoingView() {
         if self.loginButton != nil {
             self.loginButton?.removeFromSuperview()
         }
         if self.tableView != nil {
             self.tableView?.removeFromSuperview()
+            self.tableView?.delegate = nil
+            self.tableView?.dataSource = nil
         }
-        if (LO_loginHelper().isLogin()) {
-            let table = UITableView(frame: CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 10))
-            self.view .addSubview(table)
-            self.tableView = table
-            self.tableView?.delegate = self;
-            self.tableView?.dataSource = self;
-        } else {
-            let button = UIButton(type: UIButtonType.System)
-            button.frame = CGRectMake(80, 100, 200, 50);
-            button .setTitle("登陆/注册", forState: UIControlState.Normal)
-            button.backgroundColor = UIColor.blueColor()
-            button.addTarget(self, action: "loginOrRegist", forControlEvents: UIControlEvents.TouchUpInside)
-            self.view .addSubview(button)
-            self.loginButton = button;
+        let table = UITableView(frame: CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 10))
+        self.view .addSubview(table)
+        self.tableView = table
+        self.tableView?.delegate = self;
+        self.tableView?.dataSource = self;
+    }
+    
+    // 显示未登录时候的界面
+    func showLoginOutView() {
+        if self.loginButton != nil {
+            self.loginButton?.removeFromSuperview()
         }
+        if self.tableView != nil {
+            self.tableView?.removeFromSuperview()
+            self.tableView?.delegate = nil
+            self.tableView?.dataSource = nil
+        }
+        let button = UIButton(type: UIButtonType.System)
+        button.frame = CGRectMake(80, 100, 200, 50);
+        button .setTitle("登陆/注册", forState: UIControlState.Normal)
+        button.backgroundColor = UIColor.blueColor()
+        button.addTarget(self, action: "loginOrRegist", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view .addSubview(button)
+        self.loginButton = button;
     }
     
     // 注册或者登陆
@@ -84,11 +103,10 @@ class LO_HomeController: UIViewController,UITableViewDelegate,UITableViewDataSou
         case 2 :
             print(2)
         case 3 :
-            print(3)
+            LO_loginHelper().loginOut()
+            self .showLoginOutView()
         default :
             print("未知")
         }
     }
-    
-    
 }

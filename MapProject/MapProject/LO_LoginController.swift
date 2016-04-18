@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LO_LoginController: UIViewController {
+class LO_LoginController: UIViewController,UIAlertViewDelegate {
 
     weak var userNameTextField : UITextField?
     weak var passWorldTextField : UITextField?
@@ -71,10 +71,18 @@ class LO_LoginController: UIViewController {
     // 登陆
     func loginAction() {
         LO_loginHelper().loginWithInformation((self.userNameTextField?.text)!, passWorld: (self.passWorldTextField?.text)!, success: { (user) -> Void in
-            
+            // print(user?.mobilePhoneNumber)
+            let alterView = UIAlertView(title: "温馨提示", message: "登录成功", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+            alterView .show()
             }) { (err) -> Void in
-                
+               print(err)
+                let alterView = UIAlertView(title: "温馨提示", message: "登陆失败", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                alterView .show()
         }
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // 注册

@@ -143,7 +143,6 @@ class LO_AddPassworldVC: UIViewController,UIAlertViewDelegate {
         
         let btn = UIButton(type: UIButtonType.System)
         btn.frame = CGRectMake(250, 120, 90, 40)
-        btn.enabled = false
         btn.setTitle("确认", forState: UIControlState.Normal)
         btn.addTarget(self, action: "sendVerificationCode", forControlEvents: UIControlEvents.TouchUpInside)
         self.view .addSubview(btn)
