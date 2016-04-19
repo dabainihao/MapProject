@@ -70,8 +70,10 @@ class LO_loginHelper: NSObject {
       let type = self .userNameType(userName)
         switch type {
         case .userName :    // 使用用户名登陆
+            print("用户名登陆")
             AVUser.logInWithUsernameInBackground(userName, password: passWorld, block: { (userInfor, err) -> Void in
                 if err != nil || userInfor == nil {
+                    print("用户名登陆失败")
                     return
                 }
                 let us : LO_user = LO_user()
@@ -83,10 +85,12 @@ class LO_loginHelper: NSObject {
             })
         case .email :
             //
-            print("请输入用户名或者手机号")
+            print("email登陆")
         case .mobilePhoneNumber :
+            print("手机号登陆")
             AVUser.logInWithMobilePhoneNumberInBackground(userName, password: passWorld, block: { (userInfor, err) -> Void in
                 if err != nil || userInfor == nil {
+                    print("手机号登陆失败")
                     faile(err: err)
                     return
                 }
@@ -98,7 +102,7 @@ class LO_loginHelper: NSObject {
                 success(user: us)
             })
         case .error :
-            print("错误")
+            print("错误登陆")
         }
     }
     

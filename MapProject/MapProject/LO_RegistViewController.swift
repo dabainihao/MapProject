@@ -75,7 +75,6 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
                 self.secondsButton?.setTitle("重新发送", forState: UIControlState.Normal)
                 return
             }
-            
         }
     }
     
@@ -125,6 +124,7 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
     }
 }
 
+// 绑定手机号之后需要添加密码
 class LO_AddPassworldVC: UIViewController,UIAlertViewDelegate {
     weak var passWorldTextField : UITextField!
     weak var secondsButton  : UIButton?

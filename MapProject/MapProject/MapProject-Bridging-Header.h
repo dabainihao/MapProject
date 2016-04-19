@@ -20,3 +20,5 @@
 
 #import <AVOSCloud/AVOSCloud.h>
 
+#import <MBProgressHUD.h>
+

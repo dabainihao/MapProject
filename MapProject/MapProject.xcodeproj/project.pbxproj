@@ -22,7 +22,6 @@
 		C29CB3431CBE262A001E626C /* MapProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29CB3421CBE262A001E626C /* MapProjectUITests.swift */; };
 		C2DC6A861CC46A7500AE223D /* LO_RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC6A851CC46A7500AE223D /* LO_RegistViewController.swift */; };
 		C2DC6A881CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC6A871CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift */; };
-		C2DC6A8A1CC4736400AE223D /* LO_Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC6A891CC4736400AE223D /* LO_Verification.swift */; };
 		C2DC6A8C1CC473B300AE223D /* LO_loginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC6A8B1CC473B300AE223D /* LO_loginHelper.swift */; };
 		C2E401DF1CBF380B00382631 /* Baidu.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2E401DE1CBF380B00382631 /* Baidu.mm */; };
 /* End PBXBuildFile section */
@@ -68,7 +67,6 @@
 		C29CB3441CBE262A001E626C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2DC6A851CC46A7500AE223D /* LO_RegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_RegistViewController.swift; sourceTree = "<group>"; };
 		C2DC6A871CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_ForgetPassWorldViewController.swift; sourceTree = "<group>"; };
-		C2DC6A891CC4736400AE223D /* LO_Verification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_Verification.swift; sourceTree = "<group>"; };
 		C2DC6A8B1CC473B300AE223D /* LO_loginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_loginHelper.swift; sourceTree = "<group>"; };
 		C2E401DC1CBF380A00382631 /* MapProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		C2E401DD1CBF380B00382631 /* Baidu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Baidu.h; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				C280D15C1CC3F5F100B04DCF /* LO_LoginController.swift */,
 				C2DC6A851CC46A7500AE223D /* LO_RegistViewController.swift */,
 				C2DC6A871CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift */,
-				C2DC6A891CC4736400AE223D /* LO_Verification.swift */,
 				C2DC6A8B1CC473B300AE223D /* LO_loginHelper.swift */,
 				C29CB3231CBE2629001E626C /* Main.storyboard */,
 				C29CB3291CBE2629001E626C /* Assets.xcassets */,
@@ -354,7 +351,6 @@
 				C29CB3281CBE2629001E626C /* MapProject.xcdatamodeld in Sources */,
 				C2DC6A881CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift in Sources */,
 				C213A8781CC3D016007B6425 /* LO_RouteAnnotation.swift in Sources */,
-				C2DC6A8A1CC4736400AE223D /* LO_Verification.swift in Sources */,
 				C217FBAD1CC39B0F000814BA /* LO_FirstViewController.swift in Sources */,
 				C2DC6A861CC46A7500AE223D /* LO_RegistViewController.swift in Sources */,
 				C280D15D1CC3F5F100B04DCF /* LO_LoginController.swift in Sources */,
