@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return BMKMapManager()
     }()
     
+
+    
     var window: UIWindow?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         

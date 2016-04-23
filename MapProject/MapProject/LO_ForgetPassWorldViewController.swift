@@ -24,7 +24,7 @@ class LO_ForgetPassWorldViewController: UIViewController,UIAlertViewDelegate {
         userName.placeholder = "请输入手机号"
         self.view .addSubview(userName)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "usrNameChang", name: UITextFieldTextDidChangeNotification, object: nil)
-        userName.layer.borderColor = UIColor.blueColor().CGColor
+        userName.layer.borderColor = UIColor.grayColor().CGColor
         userName.layer.borderWidth = 1;
         userName.clearButtonMode = UITextFieldViewMode.WhileEditing
         self.userNameTextField = userName
@@ -33,7 +33,7 @@ class LO_ForgetPassWorldViewController: UIViewController,UIAlertViewDelegate {
         newPs.placeholder = "重置的密码"
         self.view .addSubview(newPs)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pwChang", name: UITextFieldTextDidChangeNotification, object: nil)
-        newPs.layer.borderColor = UIColor.blueColor().CGColor
+        newPs.layer.borderColor = UIColor.grayColor().CGColor
         newPs.layer.borderWidth = 1;
         newPs.clearButtonMode = UITextFieldViewMode.WhileEditing
         self.newPassworldTextField = newPs
@@ -41,7 +41,7 @@ class LO_ForgetPassWorldViewController: UIViewController,UIAlertViewDelegate {
         let passWorld = UITextField(frame: CGRectMake(30 , 120 , self.view.bounds.size.width - 200, 40))
         passWorld.placeholder = "请输入验证码"
         self.view .addSubview(passWorld)
-        passWorld.layer.borderColor = UIColor.blueColor().CGColor
+        passWorld.layer.borderColor = UIColor.grayColor().CGColor
         passWorld.layer.borderWidth = 1;
         passWorld.clearButtonMode = UITextFieldViewMode.WhileEditing
         //        passWorld.secureTextEntry = true
@@ -53,7 +53,7 @@ class LO_ForgetPassWorldViewController: UIViewController,UIAlertViewDelegate {
         btn.setTitle("发送验证码", forState: UIControlState.Normal)
         btn.addTarget(self, action: "sendVerificationCode", forControlEvents: UIControlEvents.TouchUpInside)
         self.view .addSubview(btn)
-        btn.layer.borderColor = UIColor.blueColor().CGColor
+        btn.layer.borderColor = UIColor.grayColor().CGColor
         btn.layer.borderWidth = 1;
         self.secondsButton = btn
         
@@ -62,7 +62,7 @@ class LO_ForgetPassWorldViewController: UIViewController,UIAlertViewDelegate {
         registButton.setTitle("重置密码", forState: UIControlState.Normal)
         registButton.addTarget(self, action: "registAction", forControlEvents: UIControlEvents.TouchUpInside)
         self.view .addSubview(registButton)
-        registButton.layer.borderColor = UIColor.blueColor().CGColor
+        registButton.layer.borderColor = UIColor.grayColor().CGColor
         registButton.enabled = false
         registButton.layer.borderWidth = 1;
         self.registButton = registButton

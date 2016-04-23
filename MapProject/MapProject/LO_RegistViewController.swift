@@ -23,7 +23,7 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
         userName.placeholder = "请输入手机号"
         self.view .addSubview(userName)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "usrNameChang", name: UITextFieldTextDidChangeNotification, object: nil)
-        userName.layer.borderColor = UIColor.blueColor().CGColor
+        userName.layer.borderColor = UIColor.grayColor().CGColor
         userName.layer.borderWidth = 1;
         userName.clearButtonMode = UITextFieldViewMode.WhileEditing
         self.userNameTextField = userName
@@ -31,7 +31,7 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
         let passWorld = UITextField(frame: CGRectMake(30 , 120 , self.view.bounds.size.width - 200, 40))
         passWorld.placeholder = "请输入验证码"
         self.view .addSubview(passWorld)
-        passWorld.layer.borderColor = UIColor.blueColor().CGColor
+        passWorld.layer.borderColor = UIColor.grayColor().CGColor
         passWorld.layer.borderWidth = 1;
         passWorld.clearButtonMode = UITextFieldViewMode.WhileEditing
 //        passWorld.secureTextEntry = true
@@ -43,7 +43,7 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
         btn.setTitle("发送验证码", forState: UIControlState.Normal)
         btn.addTarget(self, action: "sendVerificationCode:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view .addSubview(btn)
-        btn.layer.borderColor = UIColor.blueColor().CGColor
+        btn.layer.borderColor = UIColor.grayColor().CGColor
         btn.layer.borderWidth = 1;
         self.secondsButton = btn
         
@@ -51,8 +51,9 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
         registButton.frame = CGRectMake(30, 170, self.view.bounds.size.width - 60, 40)
         registButton.setTitle("注册", forState: UIControlState.Normal)
         registButton.addTarget(self, action: "registAction", forControlEvents: UIControlEvents.TouchUpInside)
+        registButton.enabled = false
         self.view .addSubview(registButton)
-        registButton.layer.borderColor = UIColor.blueColor().CGColor
+        registButton.layer.borderColor = UIColor.grayColor().CGColor
         registButton.layer.borderWidth = 1;
         self.registButton = registButton
     }
@@ -95,10 +96,15 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
         if self.passWorldTextField.text != nil {
         isClick = LO_loginHelper().isPhoneNumber(self.userNameTextField.text!)
         }
-        print(isClick)
         if isClick {
             self.secondsButton?.enabled = true
+            if self.passWorldTextField.text != "" {
+                self.registButton?.enabled = true
+            } else {
+                self.registButton?.enabled = false
+            }
         } else {
+            self.registButton!.enabled = false
             self.secondsButton?.enabled = false
         }
     }
@@ -116,13 +122,11 @@ class LO_RegistViewController: UIViewController,UIAlertViewDelegate {
             return;
         }
         self.navigationController?.pushViewController(LO_AddPassworldVC(), animated: true)
-//       // print("注册成功")
-//        let alterView : UIAlertView = UIAlertView(title: "温馨提示", message: "注册成功", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-//        alterView.show()
-//        //self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
         }
     }
 }
+
+// 北京市海淀区清河中街金五星商厦
 
 // 绑定手机号之后需要添加密码
 class LO_AddPassworldVC: UIViewController,UIAlertViewDelegate {
@@ -135,7 +139,7 @@ class LO_AddPassworldVC: UIViewController,UIAlertViewDelegate {
         let passWorld = UITextField(frame: CGRectMake(30 , 120 , self.view.bounds.size.width - 200, 40))
         passWorld.placeholder = "密码"
         self.view .addSubview(passWorld)
-        passWorld.layer.borderColor = UIColor.blueColor().CGColor
+        passWorld.layer.borderColor = UIColor.grayColor().CGColor
         passWorld.layer.borderWidth = 1;
         passWorld.clearButtonMode = UITextFieldViewMode.WhileEditing
         passWorld.secureTextEntry = true
@@ -146,7 +150,7 @@ class LO_AddPassworldVC: UIViewController,UIAlertViewDelegate {
         btn.setTitle("确认", forState: UIControlState.Normal)
         btn.addTarget(self, action: "sendVerificationCode", forControlEvents: UIControlEvents.TouchUpInside)
         self.view .addSubview(btn)
-        btn.layer.borderColor = UIColor.blueColor().CGColor
+        btn.layer.borderColor = UIColor.grayColor().CGColor
         btn.layer.borderWidth = 1;
         self.secondsButton = btn
     }

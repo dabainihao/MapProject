@@ -15,26 +15,50 @@ class LO_FirstViewController: UIViewController,BMKMapViewDelegate, BMKPoiSearchD
     weak var poiTextFiled : UITextField!
     var sureButton: UIButton!
     var currPageIndex: Int32 = 0
+    var titleView : UIView!
+    var labelView : UIView!
     override func viewDidLoad() {
+        self.title = "POI检索"
         super.viewDidLoad()
         self.poiSearch = BMKPoiSearch()
-        let map  = BMKMapView(frame: CGRectMake(0, 100, self.view.bounds.size.width,self.view.bounds.size.height-100))
+        let map  = BMKMapView(frame: CGRectMake(0, 0, self.view.bounds.size.width,self.view.bounds.size.height))
         self.rootMap = map
         self.rootMap.zoomLevel = 13
         self.view.addSubview(self.rootMap)
         
-        let textField = UITextField(frame: CGRectMake(20, 20, 250, 50))
+        self.titleView = UIView(frame: CGRectMake(20, 40, self.view.frame.size.width - 40 ,50))
+        self.titleView.backgroundColor = UIColor.whiteColor();
+        self.titleView.layer.cornerRadius = 2;
+        self.titleView.layer.masksToBounds = true
+        self.view.addSubview(self.titleView)
+        
+        let textField = UITextField(frame: CGRectMake(20, 10, 250, 30))
         self.poiTextFiled = textField;
-        self.poiTextFiled.placeholder = "请输入你要搜索的地点,例如餐厅,酒店"
+        self.poiTextFiled.placeholder = "请输入,例如餐厅,酒店"
         self.poiTextFiled.delegate = self;
-        self.view.addSubview(textField)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sureButtonEnable", name: UITextFieldTextDidChangeNotification, object: nil)
+        self.titleView.addSubview(textField)
+        
+        self.labelView = UIView(frame: CGRectMake(275, 10, 1, 30))
+        self.labelView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
+        self.titleView .addSubview(self.labelView)
         
         self.sureButton = UIButton(type: UIButtonType.System)
+        self.sureButton.enabled = false
         self.sureButton.setTitle("确定", forState: UIControlState.Normal)
-        self.sureButton.frame = CGRectMake(300, 20, 30, 50)
+        self.sureButton.frame = CGRectMake(290, 10, 30, 30)
         self.sureButton .addTarget(self, action: "sureButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(self.sureButton)
+        self.titleView.addSubview(self.sureButton)
+        // 
         
+    }
+    
+    func sureButtonEnable() {
+        if (self.poiTextFiled.text == "") {
+            self.sureButton.enabled = false;
+        } else {
+            self.sureButton.enabled = true;
+        }
     }
     
     func sureButtonAction() {

@@ -9,15 +9,16 @@
 import UIKit
 
 class LO_HomeController: UIViewController,UITableViewDelegate,UITableViewDataSource,updateInformationDelegate {
-    
     weak var loginButton : UIButton?
     weak var tableView : UITableView?
+    var headImageView : UIImageView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "用户中心"
     }
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.translucent = false
         super.viewWillAppear(animated)
         if (LO_loginHelper().isLogin()) {   //登录时
         self.showLoingView()
@@ -36,7 +37,10 @@ class LO_HomeController: UIViewController,UITableViewDelegate,UITableViewDataSou
             self.tableView?.delegate = nil
             self.tableView?.dataSource = nil
         }
-        let table = UITableView(frame: CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 10))
+        if self.headImageView != nil {
+            self.headImageView?.removeFromSuperview()
+        }
+        let table = UITableView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
         self.view .addSubview(table)
         self.tableView = table
         self.tableView?.delegate = self;
@@ -54,12 +58,23 @@ class LO_HomeController: UIViewController,UITableViewDelegate,UITableViewDataSou
             self.tableView?.dataSource = nil
         }
         let button = UIButton(type: UIButtonType.System)
-        button.frame = CGRectMake(80, 100, 200, 50);
-        button .setTitle("登陆/注册", forState: UIControlState.Normal)
-        button.backgroundColor = UIColor.blueColor()
+        button.frame = CGRectMake(80, 100, 220, 50);
+        button .setTitle("登陆", forState: UIControlState.Normal)
+        button.backgroundColor = UIColor.whiteColor()
+        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        button.layer.borderColor = UIColor.blackColor().CGColor
+        button.layer.borderWidth = 1
         button.addTarget(self, action: "loginOrRegist", forControlEvents: UIControlEvents.TouchUpInside)
         self.view .addSubview(button)
         self.loginButton = button;
+        self.headImageView = UIImageView(frame: CGRectMake(155, 20, 60, 60))
+        self.headImageView?.layer.cornerRadius = 30;
+        self.headImageView?.layer.masksToBounds = true
+        self.headImageView?.layer.borderColor = UIColor.grayColor().CGColor
+        self.headImageView?.layer.borderWidth = 1
+        self.view .addSubview(self.headImageView!)
+        self.headImageView?.image = UIImage(named: "person_all")
+        
     }
     
     // 注册或者登陆
@@ -138,7 +153,7 @@ class UpdateInformation:UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationController?.title = self.navTitle
+        self.title = self.navTitle
         self.nameTextField = UITextField(frame: CGRectMake(50, 100, self.view.bounds.size.width - 100,50))
         self.nameTextField?.text = textFieldString
         self.nameTextField?.borderStyle = UITextBorderStyle.Bezel
@@ -147,11 +162,17 @@ class UpdateInformation:UIViewController {
         
         self.saveButton = UIButton(type: UIButtonType.System)
         self.saveButton?.enabled = false
+        self.saveButton?.layer.borderColor = UIColor.grayColor().CGColor
+        self.saveButton?.layer.borderWidth = 1
         self.saveButton?.frame = CGRectMake(50, 170, self.view.bounds.size.width - 100,50)
         self.saveButton?.setTitle("保存", forState: UIControlState.Normal)
-        self.saveButton?.backgroundColor = UIColor.blueColor()
         self.saveButton?.addTarget(self, action: "save", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(self.saveButton!)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     //
@@ -166,35 +187,29 @@ class UpdateInformation:UIViewController {
     // 保存
     func save() {
         weak var wealself : UpdateInformation! = self
-        let mb: MBProgressHUD = MBProgressHUD(view: self.view)
-        mb.labelText = "保存中"
-        mb.labelColor = UIColor.grayColor()
-        mb.show(true)
         if self.navTitle == "用户名" {
-            AVUser.currentUser().setObject(self.nameTextField?.text, forKey: "username")
-            AVUser.currentUser().saveInBackgroundWithBlock({ (sucess, Err) -> Void in
-                if (Err != nil) {
-                    mb.labelText = "更新失败"
-                    mb.hide(true)
-                }
-                if sucess {
-                    mb.labelText = "保存完成"
-                    mb.hide(true)
-                    wealself.navigationController?.popToRootViewControllerAnimated(true)
-                }
-                
-            })
+        AVUser.currentUser().setObject(self.nameTextField?.text, forKey: "username")
+        AVUser.currentUser().saveInBackgroundWithBlock({ (sucess, Err) -> Void in
+            if (Err != nil) {
+                let alter = UIAlertView(title: "温馨提示", message: "暂时无法修改用户名.本地修改替代", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                alter .show()
+            }
+            if sucess {
+                wealself.navigationController?.popToRootViewControllerAnimated(true)
+            }
+            //
+        })
         }
-        if self.navTitle == "邮箱" {
+        if self.navTitle == "email" {
             AVUser.currentUser().setObject(self.nameTextField?.text, forKey: "email")
             AVUser.currentUser().saveInBackgroundWithBlock({ (sucess, Err) -> Void in
                 if (Err != nil) {
-                    mb.labelText = "更新失败"
-                    mb.hide(true)
+                    print("err = \(Err)")
+                    let alter = UIAlertView(title: "温馨提示", message: "暂时无法修改绑定邮箱.本地修改替代", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                    alter .show()
                 }
                 if sucess {
-                    mb.labelText = "保存完成"
-                    mb.hide(true)
+                    print("绑定成功");
                     wealself.navigationController?.popToRootViewControllerAnimated(true)
                 }
                 
@@ -204,14 +219,12 @@ class UpdateInformation:UIViewController {
             AVUser.currentUser().setObject(self.nameTextField?.text, forKey: "mobilePhoneNumber")
             AVUser.currentUser().saveInBackgroundWithBlock({ (sucess, Err) -> Void in
                 if (Err != nil) {
-                    mb.labelText = "更新失败"
-                    mb.hide(true)
+                    print("err = %@",Err)
+                    let alter = UIAlertView(title: "温馨提示", message: "暂时无法修改绑定电话.本地修改替代", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                    alter .show()
                 }
                 if sucess {
-                    mb.labelText = "保存完成"
-                    mb.hide(true)
                     wealself.navigationController?.popToRootViewControllerAnimated(true)
-                    
                 }
             })
         }

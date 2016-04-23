@@ -32,7 +32,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>我想请求的位置信息</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

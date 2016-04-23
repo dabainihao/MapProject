@@ -17,9 +17,9 @@
 		C29CB3251CBE2629001E626C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29CB3231CBE2629001E626C /* Main.storyboard */; };
 		C29CB3281CBE2629001E626C /* MapProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C29CB3261CBE2629001E626C /* MapProject.xcdatamodeld */; };
 		C29CB32A1CBE2629001E626C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C29CB3291CBE2629001E626C /* Assets.xcassets */; };
-		C29CB32D1CBE2629001E626C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C29CB32B1CBE2629001E626C /* LaunchScreen.storyboard */; };
 		C29CB3381CBE262A001E626C /* MapProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29CB3371CBE262A001E626C /* MapProjectTests.swift */; };
 		C29CB3431CBE262A001E626C /* MapProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29CB3421CBE262A001E626C /* MapProjectUITests.swift */; };
+		C2A9D1841CC8C5340075F745 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2A9D1831CC8C5340075F745 /* Launch Screen.storyboard */; };
 		C2DC6A861CC46A7500AE223D /* LO_RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC6A851CC46A7500AE223D /* LO_RegistViewController.swift */; };
 		C2DC6A881CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC6A871CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift */; };
 		C2DC6A8C1CC473B300AE223D /* LO_loginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC6A8B1CC473B300AE223D /* LO_loginHelper.swift */; };
@@ -57,7 +57,6 @@
 		C29CB3241CBE2629001E626C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C29CB3271CBE2629001E626C /* MapProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapProject.xcdatamodel; sourceTree = "<group>"; };
 		C29CB3291CBE2629001E626C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C29CB32C1CBE2629001E626C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C29CB32E1CBE2629001E626C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C29CB3331CBE2629001E626C /* MapProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29CB3371CBE262A001E626C /* MapProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProjectTests.swift; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		C29CB33E1CBE262A001E626C /* MapProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29CB3421CBE262A001E626C /* MapProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProjectUITests.swift; sourceTree = "<group>"; };
 		C29CB3441CBE262A001E626C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2A9D1831CC8C5340075F745 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C2DC6A851CC46A7500AE223D /* LO_RegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_RegistViewController.swift; sourceTree = "<group>"; };
 		C2DC6A871CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_ForgetPassWorldViewController.swift; sourceTree = "<group>"; };
 		C2DC6A8B1CC473B300AE223D /* LO_loginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LO_loginHelper.swift; sourceTree = "<group>"; };
@@ -151,8 +151,8 @@
 				C2DC6A871CC46A9C00AE223D /* LO_ForgetPassWorldViewController.swift */,
 				C2DC6A8B1CC473B300AE223D /* LO_loginHelper.swift */,
 				C29CB3231CBE2629001E626C /* Main.storyboard */,
+				C2A9D1831CC8C5340075F745 /* Launch Screen.storyboard */,
 				C29CB3291CBE2629001E626C /* Assets.xcassets */,
-				C29CB32B1CBE2629001E626C /* LaunchScreen.storyboard */,
 				C29CB32E1CBE2629001E626C /* Info.plist */,
 				C2E401DD1CBF380B00382631 /* Baidu.h */,
 				C2E401DE1CBF380B00382631 /* Baidu.mm */,
@@ -287,7 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C29CB32D1CBE2629001E626C /* LaunchScreen.storyboard in Resources */,
+				C2A9D1841CC8C5340075F745 /* Launch Screen.storyboard in Resources */,
 				C29CB32A1CBE2629001E626C /* Assets.xcassets in Resources */,
 				C29CB3251CBE2629001E626C /* Main.storyboard in Resources */,
 			);
@@ -399,14 +399,6 @@
 				C29CB3241CBE2629001E626C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		C29CB32B1CBE2629001E626C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C29CB32C1CBE2629001E626C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

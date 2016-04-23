@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--路线规划-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MapProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="路线规划" id="BYZ-38-t0r" customClass="ViewController" customModule="MapProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="nKU-7t-Qau"/>
+                    <tabBarItem key="tabBarItem" title="路线规划" id="nKU-7t-Qau"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1311" y="19.5"/>
         </scene>
-        <!--Item-->
+        <!--POI检索-->
         <scene sceneID="H54-0J-wSg">
             <objects>
-                <viewController id="R6r-s3-WP9" customClass="LO_FirstViewController" customModule="MapProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="POI检索" id="R6r-s3-WP9" customClass="LO_FirstViewController" customModule="MapProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5L6-gd-b07"/>
                         <viewControllerLayoutGuide type="bottom" id="cif-IP-9Sl"/>
@@ -37,13 +37,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="WU0-PL-g2G"/>
+                    <tabBarItem key="tabBarItem" title="POI检索" id="WU0-PL-g2G"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MYd-pH-grV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2838" y="660.75"/>
         </scene>
-        <!--Home Controller-->
+        <!--jhjj-->
         <scene sceneID="FvM-6B-t2l">
             <objects>
                 <viewController id="dQt-Gt-EO0" customClass="LO_HomeController" customModule="MapProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Vh9-6T-U6r"/>
+                    <navigationItem key="navigationItem" title="jhjj" id="Vh9-6T-U6r"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5yq-L3-iD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,13 +79,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="idy-CS-GMk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="517.5" y="145.5"/>
+            <point key="canvasLocation" x="474" y="138"/>
         </scene>
-        <!--Item-->
+        <!--用户中心-->
         <scene sceneID="bpP-lx-eJN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Fg-ub-YJZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="pLc-Gd-sTk"/>
+                <navigationController title="用户中心" automaticallyAdjustsScrollViewInsets="NO" id="9Fg-ub-YJZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="用户中心" id="pLc-Gd-sTk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="E8V-Jz-Zch">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
